@@ -62,15 +62,15 @@ thumbDom.innerHTML += `<div class="thumb">
 document.getElementsByClassName('image-container')[activeImg].classList.add('active');
 document.getElementsByClassName('thumb')[activeImg].classList.add('active');
 
-const nextImg = document.querySelector('.next')
-const prevImg = document.querySelector('.prev')
+const nextImg = document.querySelector('.next');
+const prevImg = document.querySelector('.prev');
 
 nextImg.addEventListener('click', function(){
     
     if (activeImg === imageCollection.length - 1) {
         activeImg = 0;
     } else {
-        activeImg++
+        activeImg++;
     } 
     document.querySelector('.image-container.active').classList.remove('active');
 
@@ -82,7 +82,12 @@ nextImg.addEventListener('click', function(){
 })
 
 prevImg.addEventListener('click', function(){
-    activeImg--;
+
+    if (activeImg === 0) {
+        activeImg = (imageCollection.length - 1);
+    } else {
+        activeImg--;
+    }
 
     document.querySelector('.image-container.active').classList.remove('active');
     
