@@ -40,3 +40,59 @@ const textCollection = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ];
 
+const imagesDom = document.querySelector('.images');
+const thumbDom = document.querySelector('.thumbs');
+
+let activeImg = 1;
+
+for (let i = 0; i < imageCollection.length; i++) {
+    imagesDom.innerHTML += `<div class="image-container">
+    <img src="${imageCollection[i]}" alt="${titleCollection[i]}">
+    <div class="text">
+        <h3>${titleCollection[i]}</h3>
+        <p>${textCollection[i]}</p>
+    </div>
+</div>`
+
+thumbDom.innerHTML += `<div class="thumb">
+<img src="${imageCollection[i]}" alt="${titleCollection[i]}">
+</div>`
+}
+
+document.getElementsByClassName('image-container')[activeImg].classList.add('active');
+document.getElementsByClassName('thumb')[activeImg].classList.add('active');
+
+const nextImg = document.querySelector('.next')
+const prevImg = document.querySelector('.prev')
+
+nextImg.addEventListener('click', function(){
+    
+    if (activeImg === imageCollection.length - 1) {
+        activeImg = 0;
+    } else {
+        activeImg++
+    } 
+    document.querySelector('.image-container.active').classList.remove('active');
+
+    document.getElementsByClassName('image-container')[activeImg].classList.add('active');
+
+    document.querySelector('.thumb.active').classList.remove('active');
+
+    document.getElementsByClassName('thumb')[activeImg].classList.add('active');
+})
+
+prevImg.addEventListener('click', function(){
+    activeImg--;
+
+    document.querySelector('.image-container.active').classList.remove('active');
+    
+    document.getElementsByClassName('image-container')[activeImg].classList.add('active');
+
+    document.querySelector('.thumb.active').classList.remove('active');
+
+    document.getElementsByClassName('thumb')[activeImg].classList.add('active');
+})
+
+
+
+
